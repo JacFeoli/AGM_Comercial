@@ -71,7 +71,8 @@ if ($_SESSION['timeout'] + 60 * 60 < time()) {
                     $registros = array();
                     $fecha_creacion = date('Y-m-d');
                     $id_usuario = $_SESSION['id_user'];
-                    echo $fullpath = "D:/BASES DE DATOS/Consolidados/" . $ano_factura . "/" . $mes_consolidado . "/Liquidaciones/" . $departamento . "/" . $municipio . "/" . $_FILES['files']['name'][$k];
+                    echo $fullpath = "C:/BASES DE DATOS/Consolidados/" . $ano_factura . "/" . $mes_consolidado . "/Liquidaciones/" . $departamento . "/" . $municipio . "/" . $_FILES['files']['name'][$k];
+                    //echo $fullpath = "C:/Users/ASUS/Documents/BASES DE DATOS/Consolidados/" . $ano_factura . "/" . $mes_consolidado . "/Liquidaciones/" . $departamento . "/" . $municipio . "/" . $_FILES['files']['name'][$k];
                     echo "<br />";
                     $data = file($fullpath);
                     mysqli_query($connection, "INSERT INTO archivos_cargados_catastro_2 (ANO_FACTURA, ID_MES_FACTURA, MES_FACTURA, DEPARTAMENTO, MUNICIPIO, OPERADOR_RED, RUTA, FECHA_CREACION, ID_USUARIO) "

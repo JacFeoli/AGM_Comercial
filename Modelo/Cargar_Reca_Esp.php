@@ -52,7 +52,7 @@
                         $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #0676C0;' class='label label-success'><b>E</b></span></td>";
                         break;
                     case "2":
-                        $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>PE</b></span></td>";
+                        $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #FFC107;' class='label label-success'><b>PE</b></span></td>";
                         break;
                     case "3":
                         $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #4D7B52;' class='label label-success'><b>R</b></span></td>";

@@ -111,7 +111,21 @@
                                             <h2></h2>
                                             <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane fade in active" id="informacion_actas_interventoria_tab">
-                                                    <input class="form-control input-text input-sm" type="text" placeholder="Buscar Acta" name="buscar_acta" id="buscar_acta" />
+                                                    <h2 class="text-divider"><span style="background-color: #FFFFFF;">FILTROS / BUSQUEDA</span></h2>
+                                                    <br />
+                                                    <div class="form-group">
+                                                        <div class="col-xs-3">
+                                                            <select class="form-control input-text input-sm" id="tipo_busqueda_interventoria" name="tipo_busqueda_interventoria" data-toggle="tooltip" title="TIPO DE BUSQUEDA">
+                                                                <option value="" selected="selected">-</option>
+                                                                <option value="1">MUNICIPIO</option>
+                                                                <option value="2">PERIODO</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-xs-9">
+                                                            <input class="form-control input-text input-sm" type="text" placeholder="Buscar Acta" name="buscar_acta" id="buscar_acta" data-toggle="tooltip" title="BUSCAR ACTA" />
+                                                        </div>
+                                                    </div>
+                                                    <br />
                                                     <br />
                                                     <?php
                                                         $query_select_acta_interventoria = "SELECT * FROM actas_interventoria_2 ORDER BY ID_COD_DPTO, ID_COD_MPIO";
@@ -199,6 +213,17 @@
                                                                     }
                                                                     ?>
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-xs-2"></div>
+                                                            <div class="col-xs-3"></div>
+                                                            <div style="text-align: right;" class="col-xs-3">
+                                                                <?php
+                                                                    if (isset($_GET['id_acta_interventoria_editar'])) { ?>
+                                                                        <a onClick="generarActaInterventoria(<?php echo $row_acta_interventoria['ID_ACTA_INTERVENTORIA'] ?>)"><button type="button" style='border: 1px solid;'><img src='Images/print_2.png' title='Imprimir' width='16' height='16' /></button></a>
+                                                                        <a onClick="generarWordActaInterventoria(<?php echo $row_acta_interventoria['ID_ACTA_INTERVENTORIA'] ?>)"><button type="button" style='border: 1px solid;'><img src='Images/word_2.png' title='Imprimir' width='16' height='16' /></button></a>
+                                                                    <?php
+                                                                    }
+                                                                ?>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -799,7 +824,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $("#buscar_acta").focus();
+            $("#tipo_busqueda_interventoria").focus();
             var id_acta_interventoria_editar = $("#id_acta_interventoria_editar_hidden").val();
             var id_acta_interventoria_eliminar = $("#id_acta_interventoria_eliminar_hidden").val();
             if (id_acta_interventoria_editar != undefined) {
@@ -819,6 +844,10 @@
                     $(".nav-pills a[href='#crear_acta_interventoria_tab']").text("Eliminar Acta Interventoría");
                 }
             }
+            $("#tipo_busqueda_interventoria").change(function() {
+                $("#buscar_acta").val("");
+                $("#buscar_acta").focus();
+            });
             $("#buscar_acta").keypress(function(e) {
                 if (e.which == 13) {
                     var busqueda_acta;
@@ -827,11 +856,12 @@
                     } else {
                         busqueda_acta = $(this).val().toUpperCase();
                     }
+                    var tipo_busqueda_interventoria = $('#tipo_busqueda_interventoria').val();
                     $.ajax({
                         type: "POST",
                         url: "Modelo/Cargar_Paginacion_Acta_Interventoria.php",
                         dataType: "json",
-                        data: "sw=1&busqueda_acta="+busqueda_acta,
+                        data: "sw=1&busqueda_acta="+busqueda_acta+"&tipo_busqueda_interventoria="+tipo_busqueda_interventoria,
                         success: function(data) {
                             $("#pagination-acta_interventoria").twbsPagination('destroy');
                             $("#pagination-acta_interventoria").twbsPagination({
@@ -847,7 +877,7 @@
                                         type: "POST",
                                         url: "Modelo/Cargar_Acta_Interventoria.php",
                                         dataType: "json",
-                                        data: "sw=1&busqueda_acta="+data[1]+"&page="+page,
+                                        data: "sw=1&busqueda_acta="+data[1]+"&page="+page+"&tipo_busqueda_interventoria="+tipo_busqueda_interventoria,
                                         success: function(data) {
                                             $("#loading-spinner").css('display', 'none');
                                             $("#resultado_acta_interventoria").html(data[0]);
@@ -863,13 +893,13 @@
                 format: 'YYYY-MM-DD'
             });
             $("#tab_info_actas_interventoria").on("shown.bs.tab", function() {
-                $("#buscar_acta").focus();
+                $("#tipo_busqueda_interventoria").focus();
             });
             $("#tab_crear_acta_interventoria").on("shown.bs.tab", function() {
                 $("input[name=fecha_acta]").focus();
             });
             $("#tab_info_actas_interventoria").on("click", function() {
-                $("#buscar_acta").focus();
+                $("#tipo_busqueda_interventoria").focus();
             });
             $("#tab_crear_acta_interventoria").on("click", function() {
                 $("input[name=fecha_acta]").focus();
@@ -1002,6 +1032,14 @@
     </script>
     <script>
         $(document).ready(function() {
+            $('select[name=tipo_busqueda_interventoria]').tooltip({
+                container: "body",
+                placement: "top"
+            });
+            $('input[type=text][name=buscar_acta]').tooltip({
+                container: "body",
+                placement: "top"
+            });
             $('input[type=text][name=departamento]').tooltip({
                 container: "body",
                 placement: "top"

@@ -76,6 +76,7 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR RECAUDO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>C.C. VENCIDAS</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA RECA. BITACORA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA CREACION RECA.</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>ESTADO RECAUDO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>OBSERV. RECAUDO</th>";
                         $table = $table . "</tr>";
@@ -118,6 +119,7 @@
                                     $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($recaudo, 0, ',', '.') . "</td>";
                                     $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['CC_VENCIDAS'] . "</td>";
                                     $table = $table . "<td style='vertical-align:middle;'>" . $row_info_recaudo['FECHA_PAGO_BITACORA'] . "</td>";
+                                    $table = $table . "<td style='vertical-align:middle;'>" . $row_info_recaudo['FECHA_CREACION'] . "</td>";
                                     switch ($row_info_recaudo['ESTADO_RECAUDO']) {
                                         case "1":
                                             $estado = "ENTREGADO";
@@ -237,6 +239,7 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR RECAUDO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>C.C. VENCIDAS</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA RECA. BITACORA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA CREACION RECA.</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>ESTADO RECAUDO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>OBSERV. RECAUDO</th>";
                         $table = $table . "</tr>";
@@ -279,6 +282,7 @@
                                     $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($recaudo, 0, ',', '.') . "</td>";
                                     $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['CC_VENCIDAS'] . "</td>";
                                     $table = $table . "<td style='vertical-align:middle;'>" . $row_info_recaudo['FECHA_PAGO_BITACORA'] . "</td>";
+                                    $table = $table . "<td style='vertical-align:middle;'>" . $row_info_recaudo['FECHA_CREACION'] . "</td>";
                                     switch ($row_info_recaudo['ESTADO_RECAUDO']) {
                                         case "1":
                                             $estado = "ENTREGADO";
@@ -393,6 +397,7 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR RECAUDO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>C.C. VENCIDAS</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA RECA. BITACORA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA CREACION RECA.</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>ESTADO RECAUDO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>OBSERV. RECAUDO</th>";
                         $table = $table . "</tr>";
@@ -434,6 +439,7 @@
                                             $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_recaudo['VALOR_RECAUDO'], 0, ',', '.') . "</td>";
                                             $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['CC_VENCIDAS'] . "</td>";
                                             $table = $table . "<td style='vertical-align:middle;'>" . $row_info_recaudo['FECHA_PAGO_BITACORA'] . "</td>";
+                                            $table = $table . "<td style='vertical-align:middle;'>" . $row_info_recaudo['FECHA_CREACION'] . "</td>";
                                             switch ($row_info_recaudo['ESTADO_RECAUDO']) {
                                                 case "1":
                                                     $estado = "ENTREGADO";

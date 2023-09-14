@@ -25,6 +25,10 @@
                                     <img style="margin-top: 9px;" src="Images/Logos/Logo American Lighting.png" width="101" height="76" />
                                 <?php
                                     break;
+                                case '673': ?>
+                                    <img style="margin-top: 9px;" src="Images/Logos/Logo American Lighting.png" width="101" height="76" />
+                                <?php
+                                    break;
                                 case '498': ?>
                                     <img style="margin-top: 9px;" src="Images/AGM Desarrollos.jpg" width="101" height="76" />
                                 <?php
@@ -43,7 +47,26 @@
                                     break;
                             }
                             break;
-                        case '8': ?>
+                        case '8':
+                            switch ($id_municipio) {
+                                case '182': ?>
+                                    <img style="margin-top: 9px;" src="Images/Logos/Logo American Lighting.png" width="101" height="76" />
+                                <?php
+                                    break;
+                                default: ?>
+                                    <img style="margin-top: 9px;" src="Images/AGM Desarrollos.jpg" width="70" height="76" />
+                                <?php
+                            }
+                            break;
+                        case '7': ?>
+                            <img style="margin-top: 9px;" src="Images/AGM Desarrollos.jpg" width="91" height="76" />
+                        <?php
+                            break;
+                        case '1': ?>
+                            <img style="margin-top: 9px;" src="Images/Logos/Logo American Lighting.png" width="101" height="76" />
+                        <?php
+                            break;
+                        case '25': ?>
                             <img style="margin-top: 9px;" src="Images/Logos/Logo American Lighting.png" width="101" height="76" />
                         <?php
                             break;

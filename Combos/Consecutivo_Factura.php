@@ -125,7 +125,7 @@
                                                                                 $estado = "<span style='font-size: 11px; background-color: #0676C0;' class='label label-success'><b>E</b></span>";
                                                                                 break;
                                                                             case "2":
-                                                                                $estado = "<span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>PE</b></span>";
+                                                                                $estado = "<span style='font-size: 11px; background-color: #FFC107;' class='label label-success'><b>PE</b></span>";
                                                                                 break;
                                                                             case "3":
                                                                                 $estado = "<span style='font-size: 11px; background-color: #4D7B52;' class='label label-success'><b>R</b></span>";
@@ -143,7 +143,7 @@
                                                                                 echo "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #0676C0;' class='label label-success'><b>E</b></span></td>";
                                                                                 break;
                                                                             case "2":
-                                                                                echo "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>PE</b></span></td>";
+                                                                                echo "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #FFC107;' class='label label-success'><b>PE</b></span></td>";
                                                                                 break;
                                                                             case "3":
                                                                                 echo "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #4D7B52;' class='label label-success'><b>R</b></span></td>";
@@ -159,7 +159,7 @@
                                                     echo "<p style='margin-bottom: 0px;'><span style='font-size: 11px; background-color: #0676C0;' class='label label-success'><b>E</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = ENTREGADO.</span></p>";
                                                     echo "<p style='margin-bottom: 0px;'><span style='font-size: 11px; background-color: #00A328;' class='label label-success'><b>P</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = PAGADO.</span></p>";
                                                     echo "<p style='margin-bottom: 0px;'><span style='font-size: 11px; background-color: #66C77E;' class='label label-success'><b>PP</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = PAGO PARCIAL.</span></p>";
-                                                    echo "<p style='margin-bottom: 0px;'><span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>PE</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = PENDIENTE ENVIO.</span></p>";
+                                                    echo "<p style='margin-bottom: 0px;'><span style='font-size: 11px; background-color: #FFC107;' class='label label-success'><b>PE</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = PENDIENTE ENVIO.</span></p>";
                                                     echo "<p style='margin-bottom: 0px;'><span style='font-size: 11px; background-color: #4D7B52;' class='label label-success'><b>R</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = RECLAMADA.</span></p>";
                                                 }
                                             ?>

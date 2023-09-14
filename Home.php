@@ -190,7 +190,7 @@
                                                                     }
                                                                 ?>-->
                                                                 <?php
-                                                                    if ($_SESSION['id_user'] == '1' || $_SESSION['id_user'] == '15') { ?>
+                                                                    if ($_SESSION['id_user'] == '1' || $_SESSION['id_user'] == '47') { ?>
                                                                         <li style="margin-top: 2px;" class="sidebar-dropdown">
                                                                             <a href="#">
                                                                                 <i style="background-color: #003153; color: #FFFFFF;" class="fas fa-cog"></i>

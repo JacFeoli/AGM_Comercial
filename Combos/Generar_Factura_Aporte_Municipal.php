@@ -379,18 +379,27 @@
     <style>
         table {
             font-family: 'Cabin';
+            page-break-inside: auto;
         }
         th {
             font-size: 12px;
             border: 1px solid #000000;
+            page-break-inside: avoid;
+            page-break-after: auto;
         }
         td {
             font-size: 11px;
             border: 1px solid #000000;
         }
         @media print {
-            @page { margin: 0; }
-            body { margin: 1.6cm; }
+            @page {
+                size: auto;
+                margin: 8mm 0 10mm 0;
+            }
+            body {
+                margin-top: 0;
+                margin: 1.6cm;
+            }
         }
         @font-face {
             font-family: 'Cabin';
@@ -735,7 +744,8 @@
                 ?>
                 <td style="width: 30%; border: 0px; font-size: 15px; border-bottom: 1px solid;"><img alt="" src="../Images/Firma Digital Vacia.png" /><?php echo $row_usuario_revisado['NOMBRE']; ?></td>
                 <td style="width: 3%; border: 0px;">&nbsp;</td>
-                <td style="width: 30%; border: 0px; font-size: 15px; border-bottom: 1px solid; position: relative;"><img alt="" src="../Images/Firma Digital 2.png" /> HAROLDO RIVERO</td>
+                <!--<td style="width: 30%; border: 0px; font-size: 15px; border-bottom: 1px solid; position: relative;"><img alt="" src="../Images/Firma Digital 2.png" /> HAROLDO RIVERO</td>-->
+                <td style="width: 30%; border: 0px; font-size: 15px; border-bottom: 1px solid; position: relative;"><img alt="" src="../Images/Firma Digital Vacia.png" /> ARNOLD ÁLVAREZ</td>
             </tr>
             <tr>
                 <td style="width: 30%; border: 0px; font-size: 15px;">Elaborado</td>

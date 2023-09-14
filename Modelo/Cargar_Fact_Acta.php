@@ -62,8 +62,8 @@
                                                            . " WHERE FO.ID_CONCEPTO = CF.ID_CONCEPTO_FACT "
                                                            . "   AND FO.ID_COD_DPTO = '" . $id_departamento . "' "
                                                            . "   AND FO.ID_COD_MPIO = '" . $id_municipio . "' "
-                                                           . "   AND YEAR(FO.PERIODO) = " . $_POST['id_ano'] . " "
-                                                           . "   AND MONTH(FO.PERIODO) = " . $_POST['id_mes'] . " ");
+                                                           . "   AND YEAR(FO.FECHA_FACTURA) = " . $_POST['id_ano'] . " "
+                                                           . "   AND MONTH(FO.FECHA_FACTURA) = " . $_POST['id_mes'] . " ");
         while ($row_fact_oymri = mysqli_fetch_assoc($query_select_fact_oymri)) {
             $table_concesion = $table_concesion . "<tr>";
                 $table_concesion = $table_concesion . "<td style='vertical-align:middle;'>" . $row_fact_oymri['NO_FACTURA'] . "</td>";

@@ -20,13 +20,13 @@
                 $busqueda_factura = " WHERE C.NOMBRE <> ''";
             }
             if ($_POST['estado_factura_busqueda'] == "") {
-                $estado_factura = " AND FE.ESTADO_FACTURA IN (1, 2, 3)";
+                $estado_factura = " AND FE.ESTADO_FACTURA IN (1, 2, 3, 4)";
             } else {
                 $estado_factura = " AND FE.ESTADO_FACTURA = " . $_POST['estado_factura_busqueda'];
             }
         } else {
             $busqueda_factura = " WHERE C.NOMBRE <> ''";
-            $estado_factura = " AND FE.ESTADO_FACTURA IN (1, 2, 3)";
+            $estado_factura = " AND FE.ESTADO_FACTURA IN (1, 2, 3, 4)";
         }
         $page = $_POST['page'];
         if ($page == 1) {
@@ -56,10 +56,13 @@
                         $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #0676C0;' class='label label-success'><b>E</b></span></td>";
                         break;
                     case "2":
-                        $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>PE</b></span></td>";
+                        $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #FFC107;' class='label label-success'><b>PE</b></span></td>";
                         break;
                     case "3":
                         $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #4D7B52;' class='label label-success'><b>R</b></span></td>";
+                        break;
+                    case "4":
+                        $table = $table . "<td style='vertical-align:middle;'><span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>A</b></span></td>";
                         break;
                 }
                 $table = $table . "<td style='vertical-align:middle;'>" . $row_fact_esp['DEPARTAMENTO'] . "</td>";

@@ -74,12 +74,6 @@
                                                                                 </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href='Cargue_Cartera_Fallida.php'>
-                                                                                    <i style="background-color: #003153; color: #FFFFFF;" class="fas fa-receipt"></i>
-                                                                                    <span>Cartera Fallida</span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li>
                                                                                 <a href='Cargue_Novedades.php'>
                                                                                     <i style="background-color: #003153; color: #FFFFFF;" class="fas fa-file-alt"></i>
                                                                                     <span>Novedades</span>
@@ -89,6 +83,12 @@
                                                                                 <a href='Cargue_Liquidaciones.php'>
                                                                                     <i style="background-color: #003153; color: #FFFFFF;" class="fas fa-file-upload"></i>
                                                                                     <span>Liquidaciones</span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href='Cargue_Cartera_Fallida.php'>
+                                                                                    <i style="background-color: #003153; color: #FFFFFF;" class="fas fa-receipt"></i>
+                                                                                    <span>Cartera Fallida</span>
                                                                                 </a>
                                                                             </li>
                                                                         </ul>

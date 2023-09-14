@@ -52,6 +52,7 @@
                                                 if(isset($_GET['id_contribuyente']) && isset($_GET['id_municipio']) && isset($_GET['id_departamento'])) {
                                                     $id_departamento = $_GET['id_departamento'];
                                                     $id_municipio = $_GET['id_municipio'];
+                                                    $id_ano_fact = $_GET['id_ano_fact'];
                                                     $query_select_contribuyente = mysqli_query($connection, "SELECT * "
                                                                                                           . "  FROM contribuyentes_2 "
                                                                                                           . " WHERE ID_CONTRIBUYENTE = '" . $_GET['id_contribuyente'] . "' "
@@ -66,7 +67,10 @@
                                                         $tarifa = $row_contribuyente['TARIFA'];
                                                         switch ($tipo_facturacion) {
                                                             case '2':
-                                                                $query_select_salario_minimo = mysqli_query($connection, "SELECT SALARIO_MINIMO FROM salarios_minimos_2 ORDER BY ANO DESC LIMIT 1");
+                                                                $query_select_salario_minimo = mysqli_query($connection, "SELECT SALARIO_MINIMO
+                                                                                                                            FROM salarios_minimos_2
+                                                                                                                           WHERE ANO = '$id_ano_fact'
+                                                                                                                           ORDER BY ANO DESC LIMIT 1");
                                                                 $row_salario_minimo = mysqli_fetch_array($query_select_salario_minimo);
                                                                 $salario_minimo = $row_salario_minimo['SALARIO_MINIMO'];
                                                                 break;
@@ -102,6 +106,7 @@
                                                 } else {
                                                     $id_departamento = $_GET['id_departamento'];
                                                     $id_municipio = $_GET['id_municipio'];
+                                                    $id_ano_fact = $_GET['id_ano_fact'];
                                                     $query_select_all_contribuyente = mysqli_query($connection, "SELECT * "
                                                                                                               . "  FROM contribuyentes_2 "
                                                                                                               . " WHERE ID_DEPARTAMENTO = '" . $id_departamento . "' "
@@ -121,7 +126,7 @@
                                                                     $cont = $cont + 1;
                                                                     echo "<tr>";
                                                                         echo "<td style='vertical-align:middle;'>" . $cont . "</td>";
-                                                                        echo "<td style='vertical-align:middle;'><a href='../Combos/Contribuyente.php?id_contribuyente=" . $row_all_contribuyente['ID_CONTRIBUYENTE'] . "&id_departamento=" . $id_departamento . "&id_municipio=" . $id_municipio . "'>" . $row_all_contribuyente['NOMBRE'] . "</a></td>";
+                                                                        echo "<td style='vertical-align:middle;'><a href='../Combos/Contribuyente.php?id_contribuyente=" . $row_all_contribuyente['ID_CONTRIBUYENTE'] . "&id_departamento=" . $id_departamento . "&id_municipio=" . $id_municipio . "&id_ano_fact=" . $id_ano_fact . "'>" . $row_all_contribuyente['NOMBRE'] . "</a></td>";
                                                                     echo "</tr>";
                                                                 }
                                                             echo "</tbody>";

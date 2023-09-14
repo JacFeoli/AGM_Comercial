@@ -32,6 +32,8 @@
                                                                           . "    FE.ID_TIPO_CLIENTE AS TIPO_CLIENTE, "
                                                                           . "    USU.NOMBRE AS USUARIO, "
                                                                           . "    FE.CONSECUTIVO_FACT AS FACTURA, "
+                                                                          . "    FE.TARIFA AS TARIFA, "
+                                                                          . "    FE.VALOR_TARIFA AS VALOR_TARIFA, "
                                                                           . "    FE.VALOR_FACTURA AS VALOR_FACTURA, "
                                                                           . "    FE.FECHA_FACTURA AS FECHA_FACTURA, "
                                                                           . "    FE.FECHA_ENTREGA AS FECHA_ENTREGA, "
@@ -77,12 +79,14 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>NIT</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO CLIENTE</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TARIFA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR TARIFA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA ENTREGA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA VENCIMIENTO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>PERIODO</th>";
-                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>COMERCIALIZADOR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURADO POR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>ESTADO FACTURA</th>";
@@ -113,11 +117,6 @@
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['FACTURA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_municipio['VALOR_FACTURA'], 0, ',', '.') . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['FECHA_FACTURA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['FECHA_ENTREGA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['FECHA_VENCIMIENTO'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['PERIODO'] . "</td>";
                                 switch ($row_info_municipio['TIPO_FACTURACION']) {
                                     case '1':
                                         $table = $table . "<td style='vertical-align:middle;'>CONSUMO</td>";
@@ -125,7 +124,21 @@
                                     case '2':
                                         $table = $table . "<td style='vertical-align:middle;'>SALARIOS</td>";
                                         break;
+                                    case '3':
+                                        $table = $table . "<td style='vertical-align:middle;'>UVT</td>";
+                                        break;
+                                    case '4':
+                                        $table = $table . "<td style='vertical-align:middle;'>COMERCIAL</td>";
+                                        break;
                                 }
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['TARIFA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_municipio['VALOR_TARIFA'], 0, ',', '.') . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_municipio['VALOR_FACTURA'], 0, ',', '.') . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['FECHA_FACTURA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['FECHA_ENTREGA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['FECHA_VENCIMIENTO'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['PERIODO'] . "</td>";
+                                
                                 $query_select_comercializador = mysqli_query($connection, "SELECT NOMBRE FROM comercializadores_2 WHERE ID_COMERCIALIZADOR = '" . $row_info_municipio['COMERCIALIZADOR'] . "'");
                                 $row_comercializador = mysqli_fetch_array($query_select_comercializador);
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_comercializador['NOMBRE'] . "</td>";
@@ -149,6 +162,9 @@
                                         break;
                                     case "3":
                                         $table = $table . "<td style='vertical-align:middle;'>RECLAMADA</td>";
+                                        break;
+                                    case "4":
+                                        $table = $table . "<td style='vertical-align:middle;'>ANULADA</td>";
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_municipio['OBSERVACIONES'] . "</td>";
@@ -215,6 +231,8 @@
                                                                        . "    FE.ID_TIPO_CLIENTE AS TIPO_CLIENTE, "
                                                                        . "    USU.NOMBRE AS USUARIO, "
                                                                        . "    FE.CONSECUTIVO_FACT AS FACTURA, "
+                                                                       . "    FE.TARIFA AS TARIFA, "
+                                                                       . "    FE.VALOR_TARIFA AS VALOR_TARIFA, "
                                                                        . "    FE.VALOR_FACTURA AS VALOR_FACTURA, "
                                                                        . "    FE.FECHA_FACTURA AS FECHA_FACTURA, "
                                                                        . "    FE.FECHA_ENTREGA AS FECHA_ENTREGA, "
@@ -251,12 +269,14 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>NIT</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO CLIENTE</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TARIFA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR TARIFA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA ENTREGA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA VENCIMIENTO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>PERIODO</th>";
-                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>COMERCIALIZADOR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURADO POR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>ESTADO FACTURA</th>";
@@ -287,11 +307,6 @@
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['FACTURA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_contribuyente['VALOR_FACTURA'], 0, ',', '.') . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['FECHA_FACTURA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['FECHA_ENTREGA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['FECHA_VENCIMIENTO'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['PERIODO'] . "</td>";
                                 switch ($row_info_contribuyente['TIPO_FACTURACION']) {
                                     case '1':
                                         $table = $table . "<td style='vertical-align:middle;'>CONSUMO</td>";
@@ -299,7 +314,20 @@
                                     case '2':
                                         $table = $table . "<td style='vertical-align:middle;'>SALARIOS</td>";
                                         break;
+                                    case '3':
+                                        $table = $table . "<td style='vertical-align:middle;'>UVT</td>";
+                                        break;
+                                    case '4':
+                                        $table = $table . "<td style='vertical-align:middle;'>COMERCIAL</td>";
+                                        break;
                                 }
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['TARIFA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_contribuyente['VALOR_TARIFA'], 0, ',', '.') . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_contribuyente['VALOR_FACTURA'], 0, ',', '.') . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['FECHA_FACTURA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['FECHA_ENTREGA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['FECHA_VENCIMIENTO'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['PERIODO'] . "</td>";
                                 $query_select_comercializador = mysqli_query($connection, "SELECT NOMBRE FROM comercializadores_2 WHERE ID_COMERCIALIZADOR = '" . $row_info_contribuyente['COMERCIALIZADOR'] . "'");
                                 $row_comercializador = mysqli_fetch_array($query_select_comercializador);
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_comercializador['NOMBRE'] . "</td>";
@@ -323,6 +351,9 @@
                                         break;
                                     case "3":
                                         $table = $table . "<td style='vertical-align:middle;'>RECLAMADA</td>";
+                                        break;
+                                    case "4":
+                                        $table = $table . "<td style='vertical-align:middle;'>ANULADA</td>";
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_contribuyente['OBSERVACIONES'] . "</td>";
@@ -391,6 +422,8 @@
                                                                         . "    FE.ID_TIPO_CLIENTE AS TIPO_CLIENTE, "
                                                                         . "    USU.NOMBRE AS USUARIO, "
                                                                         . "    FE.CONSECUTIVO_FACT AS FACTURA, "
+                                                                        . "    FE.TARIFA AS TARIFA, "
+                                                                        . "    FE.VALOR_TARIFA AS VALOR_TARIFA, "
                                                                         . "    FE.VALOR_FACTURA AS VALOR_FACTURA, "
                                                                         . "    FE.FECHA_FACTURA AS FECHA_FACTURA, "
                                                                         . "    FE.FECHA_ENTREGA AS FECHA_ENTREGA, "
@@ -426,12 +459,14 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>NIT</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO CLIENTE</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TARIFA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR TARIFA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA ENTREGA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA VENCIMIENTO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>PERIODO</th>";
-                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>COMERCIALIZADOR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURADO POR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>ESTADO FACTURA</th>";
@@ -462,11 +497,6 @@
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['FACTURA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_mensual['VALOR_FACTURA'], 0, ',', '.') . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['FECHA_FACTURA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['FECHA_ENTREGA'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['FECHA_VENCIMIENTO'] . "</td>";
-                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['PERIODO'] . "</td>";
                                 switch ($row_info_mensual['TIPO_FACTURACION']) {
                                     case '1':
                                         $table = $table . "<td style='vertical-align:middle;'>CONSUMO</td>";
@@ -474,7 +504,20 @@
                                     case '2':
                                         $table = $table . "<td style='vertical-align:middle;'>SALARIOS</td>";
                                         break;
+                                    case '3':
+                                        $table = $table . "<td style='vertical-align:middle;'>UVT</td>";
+                                        break;
+                                    case '4':
+                                        $table = $table . "<td style='vertical-align:middle;'>COMERCIAL</td>";
+                                        break;
                                 }
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['TARIFA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_mensual['VALOR_TARIFA'], 0, ',', '.') . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_mensual['VALOR_FACTURA'], 0, ',', '.') . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['FECHA_FACTURA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['FECHA_ENTREGA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['FECHA_VENCIMIENTO'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['PERIODO'] . "</td>";
                                 $query_select_comercializador = mysqli_query($connection, "SELECT NOMBRE FROM comercializadores_2 WHERE ID_COMERCIALIZADOR = '" . $row_info_mensual['COMERCIALIZADOR'] . "'");
                                 $row_comercializador = mysqli_fetch_array($query_select_comercializador);
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_comercializador['NOMBRE'] . "</td>";
@@ -498,6 +541,9 @@
                                         break;
                                     case "3":
                                         $table = $table . "<td style='vertical-align:middle;'>RECLAMADA</td>";
+                                        break;
+                                    case "4":
+                                        $table = $table . "<td style='vertical-align:middle;'>ANULADA</td>";
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_mensual['OBSERVACIONES'] . "</td>";
@@ -556,6 +602,8 @@
                                                                         . "    FE.ID_TIPO_CLIENTE AS TIPO_CLIENTE, "
                                                                         . "    USU.NOMBRE AS USUARIO, "
                                                                         . "    FE.CONSECUTIVO_FACT AS FACTURA, "
+                                                                        . "    FE.TARIFA AS TARIFA, "
+                                                                        . "    FE.VALOR_TARIFA AS VALOR_TARIFA, "
                                                                         . "    FE.VALOR_FACTURA AS VALOR_FACTURA, "
                                                                         . "    FE.FECHA_FACTURA AS FECHA_FACTURA, "
                                                                         . "    FE.FECHA_ENTREGA AS FECHA_ENTREGA, "
@@ -590,6 +638,9 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>NIT</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO CLIENTE</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TARIFA</th>";
+                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR TARIFA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>VALOR FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA FACTURA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>DIA FACTURA</th>";
@@ -600,7 +651,6 @@
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA ENTREGA</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FECHA VENCIMIENTO</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>PERIODO</th>";
-                            $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>TIPO FACT.</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>COMERCIALIZADOR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>FACTURADO POR</th>";
                             $table = $table . "<th style='background-color: #4472C4; color: #FFFFFF;'>ESTADO FACTURA</th>";
@@ -634,6 +684,22 @@
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['FACTURA'] . "</td>";
+                                switch ($row_info_rango['TIPO_FACTURACION']) {
+                                    case '1':
+                                        $table = $table . "<td style='vertical-align:middle;'>CONSUMO</td>";
+                                        break;
+                                    case '2':
+                                        $table = $table . "<td style='vertical-align:middle;'>SALARIOS</td>";
+                                        break;
+                                    case '3':
+                                        $table = $table . "<td style='vertical-align:middle;'>UVT</td>";
+                                        break;
+                                    case '4':
+                                        $table = $table . "<td style='vertical-align:middle;'>COMERCIAL</td>";
+                                        break;
+                                }
+                                $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['TARIFA'] . "</td>";
+                                $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_rango['VALOR_TARIFA'], 0, ',', '.') . "</td>";
                                 $table = $table . "<td style='vertical-align:middle;'>$ " . number_format($row_info_rango['VALOR_FACTURA'], 0, ',', '.') . "</td>";
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['FECHA_FACTURA'] . "</td>";
                                 $table = $table . "<td style='vertical-align:middle;'>" . substr($row_info_rango['FECHA_FACTURA'], 8, 2) . "</td>";
@@ -660,17 +726,6 @@
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['FECHA_ENTREGA'] . "</td>";
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['FECHA_VENCIMIENTO'] . "</td>";
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['PERIODO'] . "</td>";
-                                switch ($row_info_rango['TIPO_FACTURACION']) {
-                                    case '1':
-                                        $table = $table . "<td style='vertical-align:middle;'>CONSUMO</td>";
-                                        break;
-                                    case '2':
-                                        $table = $table . "<td style='vertical-align:middle;'>SALARIOS</td>";
-                                        break;
-                                    case '3':
-                                        $table = $table . "<td style='vertical-align:middle;'>UVT</td>";
-                                        break;
-                                }
                                 $query_select_comercializador = mysqli_query($connection, "SELECT NOMBRE FROM comercializadores_2 WHERE ID_COMERCIALIZADOR = '" . $row_info_rango['COMERCIALIZADOR'] . "'");
                                 $row_comercializador = mysqli_fetch_array($query_select_comercializador);
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_comercializador['NOMBRE'] . "</td>";
@@ -694,6 +749,9 @@
                                         break;
                                     case "3":
                                         $table = $table . "<td style='vertical-align:middle;'>RECLAMADA</td>";
+                                        break;
+                                    case "4":
+                                        $table = $table . "<td style='vertical-align:middle;'>ANULADA</td>";
                                         break;
                                 }
                                 $table = $table . "<td style='vertical-align:middle;'>" . $row_info_rango['OBSERVACIONES'] . "</td>";

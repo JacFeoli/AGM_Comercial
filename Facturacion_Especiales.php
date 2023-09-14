@@ -148,6 +148,7 @@ if ($_SESSION['timeout'] + 60 * 60 < time()) {
                                                             <option value="1">ENTREGADO</option>
                                                             <option value="2">PENDIENTE DE ENVÍO</option>
                                                             <option value="3">RECLAMADA</option>
+                                                            <option value="4">ANULADA</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-xs-9">
@@ -182,8 +183,9 @@ if ($_SESSION['timeout'] + 60 * 60 < time()) {
                                                     echo "</div>";
                                                     echo "<p></p>";
                                                     echo "<span style='font-size: 11px; background-color: #0676C0;' class='label label-success'><b>E</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = ENTREGADO.</span>";
-                                                    echo "&nbsp;<span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>PE</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = PENDIENTE ENVIO.</span>";
+                                                    echo "&nbsp;<span style='font-size: 11px; background-color: #FFC107;' class='label label-success'><b>PE</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = PENDIENTE ENVIO.</span>";
                                                     echo "&nbsp;<span style='font-size: 11px; background-color: #4D7B52;' class='label label-success'><b>R</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = RECLAMADA.</span>";
+                                                    echo "&nbsp;<span style='font-size: 11px; background-color: #CC3300;' class='label label-success'><b>A</b></span><span style='color: #003153; font-size: 12px; font-family: Cabin; font-weight: bold;'> = ANULADA.</span>";
                                                 } else {
                                                     echo "<p class='message'>No se encontraron Facturas Cliente Especiales Creadas.</p>";
                                                 }
@@ -328,6 +330,7 @@ if ($_SESSION['timeout'] + 60 * 60 < time()) {
                                                                                     <option value="1">ENTREGADO</option>
                                                                                     <option value="2">PENDIENTE DE ENVÍO</option>
                                                                                     <option value="3">RECLAMADA</option>
+                                                                                    <option value="4">ANULADA</option>
                                                                                     <?php
                                                                                     if (isset($_GET['id_fact_especial_editar']) || isset($_GET['id_fact_especial_eliminar'])) { ?>
                                                                                         <input type="hidden" id="estado_factura_hidden" name="estado_factura_hidden" value="<?php echo $row_fact_especial['ESTADO_FACTURA']; ?>" />
@@ -1116,7 +1119,8 @@ if ($_SESSION['timeout'] + 60 * 60 < time()) {
     function contribuyenteFact() {
         var id_departamento = $("#id_departamento").val();
         var id_municipio = $("#id_municipio").val();
-        window.open("Combos/Contribuyente.php?id_departamento=" + id_departamento + "&id_municipio=" + id_municipio, "Popup", "width=700, height=500");
+        var id_ano_fact = $("#id_ano_fact").val();
+        window.open("Combos/Contribuyente.php?id_departamento=" + id_departamento + "&id_municipio=" + id_municipio + '&id_ano_fact=' + id_ano_fact, "Popup", "width=700, height=500");
     }
 
     function infoComercializadorFact(id_comercializador, comercializador, nit_comercializador, consulta) {

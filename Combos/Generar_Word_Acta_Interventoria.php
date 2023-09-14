@@ -264,8 +264,8 @@
                                                                . " WHERE FO.ID_CONCEPTO = CF.ID_CONCEPTO_FACT "
                                                                . "   AND FO.ID_COD_DPTO = '" . $row_info_acta_interventoria['ID_COD_DPTO'] . "' "
                                                                . "   AND FO.ID_COD_MPIO = '" . $row_info_acta_interventoria['ID_COD_MPIO'] . "' "
-                                                               . "   AND YEAR(FO.PERIODO) = " . substr($row_info_acta_interventoria['PERIODO_ACTA'], 0, 4) . " "
-                                                               . "   AND MONTH(FO.PERIODO) = " . substr($row_info_acta_interventoria['PERIODO_ACTA'], 4, 2) . " ");
+                                                               . "   AND YEAR(FO.FECHA_FACTURA) = " . substr($row_info_acta_interventoria['PERIODO_ACTA'], 0, 4) . " "
+                                                               . "   AND MONTH(FO.FECHA_FACTURA) = " . substr($row_info_acta_interventoria['PERIODO_ACTA'], 4, 2) . " ");
             while ($row_fact_oymri = mysqli_fetch_assoc($query_select_fact_oymri)) {
                 $table = $table . "<tr>";
                     $table = $table . "<td style='border: 1px solid; vertical-align:middle;'>" . $row_fact_oymri['NO_FACTURA'] . "</td>";

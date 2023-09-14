@@ -1182,7 +1182,6 @@
             $("input[name=total_factura]").val(newTotalFact);
         }
         function calcularTotalFactura() {
-            alert("Entra");
             var valor_factura = $("input[name=valor_factura]").val();
             var ajuste_fact = $("input[name=ajuste_fact]").val();
             $("input[name=total_factura]").val(Math.round(valor_factura.replace(/,/g, "") + ajuste_fact.replace(/,/g, "")));

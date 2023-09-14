@@ -28,18 +28,27 @@
     <style>
         table {
             font-family: 'Cabin';
+            page-break-inside: auto;
         }
         th {
             font-size: 12px;
             border: 1px solid #000000;
+            page-break-inside: avoid;
+            page-break-after: auto;
         }
         td {
             font-size: 11px;
             border: 1px solid #000000;
         }
         @media print {
-            @page { margin: 0; }
-            body { margin: 1.6cm; }
+            @page {
+                size: auto;
+                margin: 8mm 0 10mm 0;
+            }
+            body {
+                margin-top: 0;
+                margin: 1.6cm;
+            }
         }
         @font-face {
             font-family: 'Cabin';
@@ -57,6 +66,20 @@
             <tr>
                 <?php
                     switch ($row_alcaldia['NOMBRE']) {
+                        case 'ALCALDIA MUNICIPAL DE NEIVA': ?>
+                            <td style="width: 20%;"><img style="max-width: 80%;" src="../Images/Neiva/encabezado_neiva1.png" /></td>
+                            <td style="width: 40%; font-size: 15px; font-weight: bold">OFICIO</td>
+                            <td>
+                                <div style="width:101%; border-bottom: solid; border-width: thin;"> <p style="margin: 3px; text-align: start; padding-left: 2px; font-weight: bold">FOR-GDC-01</p></div>
+                                <div style="width:101%; border-bottom: solid; border-width: thin; "> <p style="margin: 3px; text-align: start; padding-left: 2px; font-weight: bold">Versión: 01</p></div>
+                                <div style="width:101%; border-width: thin; "> 
+                                <p style="margin: 3px; text-align: start; padding-left: 2px; font-weight: bold">Vigente desde:</p>
+                                <p style="margin: 3px; text-align: start; padding-left: 2px">Marzo 19 del 2021</p>
+                            </div>
+                            </td>
+                            <td style="width: 20%;"><img style="max-width: 80%;" src="../Images/Neiva/encabezado_neiva2.png" /></td>
+                            <?php
+                            break;
                         case 'ALCALDIA MUNICIPAL DE MAGANGUE': ?>
                             <td style="width: 20%; background-color: #00B050;"><img style="max-width: 60%;" src="../Images/Magangue/Escudo Magangue.png" /></td>
                             <td style="padding: 0;">
@@ -211,7 +234,7 @@
                             <?php
                             break;
                         case 'ALCALDIA MUNICIPAL DE RIOHACHA': ?>
-                            <td style="width: 30%; border: 0px;"><img style="max-width: 100%;" src="../Images/Riohacha/Escudo Riohacha.png" /></td>
+                            <td style="width: 30%; border: 0px; text-align: left;"><img style="max-width: 100%;" src="../Images/Riohacha/Escudo Riohacha.png" /></td>
                             <?php
                             break;
                         case 'ALCALDIA MUNICIPAL DE TURBACO': ?>
@@ -756,9 +779,6 @@
                             <th style="border: 1px solid; width: 10%; text-align: left; font-size: 11px;"><b>DIRECCIÓN:</b></th>
                             <th style="border: 1px solid; width: 18%; font-size: 11px;"><b><center><?php echo $row_contribuyente_info['DIRECCION_CONTRIBUYENTE']; ?></center></b></th>
                         </tr>
-                    </table>
-                    <br />
-                    <table style="border-collapse: collapse; border: 1px solid; font-size: 13px; text-align: center;" width="100%">
                         <tr style="border: 1px solid;">
                             <th style="border: 1px solid; width: 10%; text-align: left; font-weight: normal; font-size: 11px;">PERIODO CORRIENTE:</th>
                             <?php
@@ -802,6 +822,10 @@
                                         break;
                                 }
                             ?>
+                        </tr>
+                        <tr style="border: 1px solid;">
+                            <th style="border: 1px solid; width: 10%; text-align: left; font-weight: normal; font-size: 11px;">BASE GRAVABLE / UVT / S.M.L.V.:</th>
+                            <th style="border: 1px solid; width: 18%; font-weight: normal; font-size: 11px;"><center>$ <?php echo number_format($row_info_fact_esp['VALOR_TARIFA'], 0, ',', '.'); ?></center></th>
                         </tr>
                         <tr style="border: 1px solid;">
                             <th style="border: 1px solid; width: 10%; text-align: left; font-weight: normal; font-size: 11px;">VALOR IMPUESTO:</th>
@@ -862,6 +886,13 @@
         ?>
         <?php
             switch ($row_alcaldia['NOMBRE']) {
+                case 'ALCALDIA MUNICIPAL DE NEIVA': ?>
+                    <br />
+                    <br />
+                    <p style="text-align: center; margin: 0px; font-size: 13px;"><?php echo $row_alcaldia['NOMBRE_SEC_HACIENDA'] ?></p>
+                    <p style="text-align: center; margin: 0px; font-size: 13px; font-weight: bold;">Director de Rentas </p>
+                    <?php
+                    break;
                 case 'ALCALDIA MUNICIPAL DE FACATATIVA': ?>
                     <table style="border-collapse: collapse; border: 1px solid; font-size: 13px; text-align: center;" width="100%">
                         <tr>
@@ -887,7 +918,8 @@
                 case 'ALCALDIA MUNICIPAL DE MAGANGUE': ?>
                     <br />
                     <br />
-                    <p style="text-align: center; margin: 0px; font-size: 13px; font-weight: bold;">DIRECTOR FINANCIERO</p>
+                    <p style="text-align: center; margin: 0px; font-size: 13px; font-weight: bold;"><?php echo $row_alcaldia['NOMBRE_SEC_HACIENDA']; ?></p>
+                    <p style="text-align: center; margin: 0px; font-size: 13px; font-weight: bold;">SECRETARIO DE HACIENDA</p>
                     <p style="text-align: center; margin: 0px; font-size: 13px; font-weight: bold;">Magangué (Bolivar)</p>
                     <?php
                     break;
@@ -1009,13 +1041,7 @@
                     <?php
                     break;
                 case 'ALCALDIA MUNICIPAL DE RIOHACHA': ?>
-                    <br />
-                    <table style="width: 100%; text-align: center;">
-                        <tr>
-                            <td style="width: 30%;"><img style="max-width: 60%;" src="../Images/Riohacha/Membrete 1 Riohacha.png" /></td>                            
-                            <td style="width: 70%;"><img style="max-width: 60%;" src="../Images/Riohacha/Membrete 2 Riohacha.png" /></td>
-                        </tr>
-                    </table>
+                    <p style="text-align: center;"><img style="max-width: 100%;" src="../Images/Riohacha/Membrete Riohacha.png" /></p>
                     <?php
                     break;
                 case 'ALCALDIA MUNICIPAL DE TURBACO': ?>
@@ -1056,4 +1082,4 @@
         ?>
     </body>
 </html>
-<?php
+<php
